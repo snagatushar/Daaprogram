@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 /*
   Single-file React app (no external CSS).
-  - Paste this into src/App.js
+  - Paste this into src/App.js (replace existing content)
   - Run with: npm start
 */
 
@@ -112,7 +112,7 @@ sns.heatmap(contingency, annot=True, fmt='d', cmap='YlGnBu')
 plt.title("Chi-square Test Visualization: Region vs Fraud")
 plt.xlabel("Is Fraud (0 = No, 1 = Yes)")
 plt.ylabel("Region")
-plt.show()`,
+plt.show()` ,
   },
   {
     id: "f",
@@ -147,7 +147,7 @@ plt.plot(df['hour'], Y_pred, color='red')
 plt.xlabel('Hour')
 plt.ylabel('Transaction Amount')
 plt.title('Simple Linear Regression: Amount vs Hour')
-plt.show()`,
+plt.show()` ,
   },
   {
     id: "g",
@@ -177,7 +177,7 @@ print(f"R²: {r2:.4f}")
 print(f"RMSE: {rmse:.2f}")
 new_data = pd.DataFrame({'hour': [10, 15], 'is_fraud': [0, 1]})
 predicted_amount = model.predict(new_data)
-print(pd.concat([new_data, pd.Series(predicted_amount, name='Predicted_Amount')], axis=1))`,
+print(pd.concat([new_data, pd.Series(predicted_amount, name='Predicted_Amount')], axis=1))` ,
   },
   {
     id: "h",
@@ -208,7 +208,7 @@ print(cm)
 print(classification_report(y_test, y_pred))
 new_data = pd.DataFrame({'hour': [10, 15], 'amount': [5000, 20000]})
 predictions = model.predict(new_data)
-print(pd.concat([new_data, pd.Series(predictions, name='Predicted_is_fraud')], axis=1))`,
+print(pd.concat([new_data, pd.Series(predictions, name='Predicted_is_fraud')], axis=1))` ,
   },
   {
     id: "i",
@@ -233,7 +233,100 @@ alpha = 0.05
 if p_one_sided < alpha:
     print("Fraud transactions have significantly higher mean amounts.")
 else:
-    print("No significant difference between fraud and non-fraud transaction means.")`,
+    print("No significant difference between fraud and non-fraud transaction means.")` ,
+  },
+
+  // New sections requested by you:
+  {
+    id: "powerbi",
+    title: "Power BI – Steps",
+    filename: "PowerBI_Steps.txt",
+    code: `1️⃣ Load Dataset in Power BI
+
+Open Power BI Desktop
+Click Get Data → Text/CSV
+Select file → Load
+
+2️⃣ Create Slicer (Salesperson)
+
+Go to Visualizations → select Slicer
+Drag SalesPerson → Field
+Place on left side of report
+
+3️⃣ Create Bar Chart (Sum of SalesAmount by Product)
+
+Select Clustered Column Chart
+Drag Product → Axis
+Drag SalesAmount → Values
+Place on right side of report
+
+4️⃣ Check Slicer Filter
+
+Click any salesperson in slicer
+Verify chart updates dynamically`,
+  },
+  {
+    id: "excel",
+    title: "Excel – Formulas & Features",
+    filename: "Excel_Steps.txt",
+    code: `5️⃣ Excel – Calculate Total Sales
+
+In F2, type =D2*E2
+Drag formula down
+
+6️⃣ Excel – Conditional Formatting
+
+Select F2:F7
+Home → Conditional Formatting → Highlight Cell Rules → Greater Than
+Enter 400000 → Choose Green Fill
+
+7️⃣ Excel – Create Performance Column
+
+In G1, type Performance
+In G2, type =IF(F2>=400000,"High","Low")
+Drag down
+
+8️⃣ Excel – Count High Performers
+
+In any empty cell, type =COUNTIF(G2:G7,"High")
+
+9️⃣ Excel – Total Sales by Salesperson
+
+In any empty cell, type =SUMIF(A2:A7,"Asha",F2:F7)`,
+  },
+  {
+    id: "pivot",
+    title: "Pivot Table & What-If",
+    filename: "PivotTable_Steps.txt",
+    code: `🔟 Excel – Create Pivot Table
+
+Select A1:F7
+Insert → PivotTable → New Worksheet → OK
+Drag Salesperson → Rows
+Drag Total Sales → Values
+
+1️⃣1️⃣ Excel – What-If Analysis
+
+Go to Data → What-If Analysis → Scenario Manager
+Click Add
+Select cells to change (e.g., Unit Price for Tablet)
+Enter new values → OK → Show
+
+1️⃣2️⃣ Excel – Data Validation (Dropdown List)
+
+Select cell (e.g., H1)
+Data → Data Validation
+Allow: → select List
+Source: → =A2:A7
+Click OK
+
+1️⃣3️⃣ Excel – Subtotals
+
+Sort by Region
+Data → Subtotal
+At each change in: Region
+Use function: Sum
+Add subtotal to: Total Sales → OK`,
   },
 ];
 
@@ -372,7 +465,7 @@ function App() {
                   >
                     <option value="show">Show</option>
                     <option value="hide">Hide</option>
-                    <option value="download">Download .py</option>
+                    <option value="download">Download .txt</option>
                   </select>
 
                   <button className="copy" onClick={() => handleCopy(p.code, p.id)}>
@@ -391,7 +484,7 @@ function App() {
         </main>
       </div>
 
-      <footer className="footer">Made with ❤️ — paste the .py into your editor to run locally.</footer>
+      <footer className="footer">Made with ❤️ — paste the snippets into your editor or Excel/Power BI as needed.</footer>
     </div>
   );
 }
